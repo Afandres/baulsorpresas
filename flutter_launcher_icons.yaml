@@ -1,0 +1,4 @@
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logo.png" # Ruta de la imagen del icono de la aplicación

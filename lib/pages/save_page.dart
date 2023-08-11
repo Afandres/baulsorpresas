@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:baulsorpresas/pages/models/product.dart';
+import 'package:baulsorpresas/models/product.dart';
 import 'save_form.dart'; // Importar el nuevo archivo
 
 class SavePage extends StatelessWidget {
-  static const String ROUTE = "/save";
+  static const String ROUTE = "save";
 
   @override
   Widget build(BuildContext context) {

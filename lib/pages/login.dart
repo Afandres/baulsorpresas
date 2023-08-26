@@ -102,13 +102,15 @@ class _LoginState extends State<Login> {
               child: TextField(
                 controller: _usernameController,
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.pinkAccent),
-                    ),
-                    labelText: 'Username',
-                    labelStyle: TextStyle(color: Colors.grey),
-                    hintText: 'Ingrese su nombre de usuario'),
+                  border: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.pinkAccent),
+                  ),
+                  labelText: 'Username',
+                  labelStyle: TextStyle(color: Colors.grey),
+                  hintText: 'Ingrese su nombre de usuario',
+                  prefixIcon: Icon(Icons.person_2_outlined),
+                ),
               ),
             ),
             Padding(
@@ -119,13 +121,15 @@ class _LoginState extends State<Login> {
                 obscureText: true,
                 controller: _passwordController,
                 decoration: InputDecoration(
-                    border: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.pinkAccent),
-                    ),
-                    labelText: 'Password',
-                    labelStyle: TextStyle(color: Colors.grey),
-                    hintText: 'Ingrese su contraseña'),
+                  border: OutlineInputBorder(),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.pinkAccent),
+                  ),
+                  labelText: 'Password',
+                  labelStyle: TextStyle(color: Colors.grey),
+                  hintText: 'Ingrese su contraseña',
+                  prefixIcon: Icon(Icons.key_outlined),
+                ),
               ),
             ),
             SizedBox(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:baulsorpresas/db/conexion.dart';
 import 'package:baulsorpresas/models/sale.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'package:intl/intl.dart';
 
@@ -13,6 +14,38 @@ class SalesPage extends StatefulWidget {
 
 class _SalesPageState extends State<SalesPage> {
   List<Sale> salesList = [];
+
+// Estilo para los Textos normales
+  TextStyle commonTextStyle = GoogleFonts.neucha(
+    fontSize: 16,
+    fontWeight: FontWeight.normal,
+    color: Colors.black,
+  );
+// Estilo para los Textos normales
+  TextStyle commonminTextStyle = GoogleFonts.neucha(
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+    color: Colors.black,
+  );
+// Estilo para los títulos negros
+  TextStyle titleblackTextStyle = GoogleFonts.neucha(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: Colors.black,
+  );
+// Estilo para los títulos blancos
+  TextStyle titleTextStyle = GoogleFonts.neucha(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
+
+// Estilo para los títulos
+  TextStyle subtitleTextStyle = GoogleFonts.neucha(
+    fontSize: 20,
+    fontWeight: FontWeight.normal,
+    color: Colors.black,
+  );
 
   @override
   void initState() {
@@ -31,7 +64,10 @@ class _SalesPageState extends State<SalesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lista de Ventas'),
+        title: Text(
+          'Lista de Ventas',
+          style: titleTextStyle,
+        ),
         backgroundColor: Colors.pinkAccent,
       ),
       body: ListView.builder(
@@ -40,14 +76,23 @@ class _SalesPageState extends State<SalesPage> {
           Sale sale = salesList[index];
           SizedBox(height: 5);
           return ListTile(
-            title: Text('Venta: ${sale.id}'),
+            title: Text(
+              'Venta: ${sale.id}',
+              style: subtitleTextStyle,
+            ),
             subtitle: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(height: 5),
-                Text('Fecha: ${_formatDate(sale.dateTime)}'),
+                Text(
+                  'Fecha: ${_formatDate(sale.dateTime)}',
+                  style: commonTextStyle,
+                ),
                 SizedBox(height: 5),
-                Text('Total: ${sale.totalAmount.toString()}'),
+                Text(
+                  'Total: ${sale.totalAmount.toString()}',
+                  style: commonTextStyle,
+                ),
               ],
             ),
             trailing: Row(
@@ -57,12 +102,12 @@ class _SalesPageState extends State<SalesPage> {
                     onPressed: () {
                       _showSaleDetails(sale);
                     },
-                    icon: Icon(Icons.visibility)),
+                    icon: Icon(Icons.visibility_outlined)),
                 IconButton(
                     onPressed: () {
                       _showDeleteDialog(sale);
                     },
-                    icon: Icon(Icons.delete))
+                    icon: Icon(Icons.delete_outline))
               ],
             ),
           );
@@ -77,24 +122,32 @@ class _SalesPageState extends State<SalesPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Detalles de la Venta'),
+          title: Text(
+            'Detalles de la Venta',
+            style: titleblackTextStyle,
+          ),
           content: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text('ID de Venta: ${sale.id}'),
-                Text('Fecha: ${_formatDate(sale.dateTime)}'),
-                Text('Total: ${sale.totalAmount.toString()}'),
+                Text('ID de Venta: ${sale.id}', style: commonminTextStyle),
+                Text('Fecha: ${_formatDate(sale.dateTime)}',
+                    style: commonminTextStyle),
+                Text('Total: ${sale.totalAmount.toString()}',
+                    style: commonminTextStyle),
                 SizedBox(height: 16),
-                Text('Productos Vendidos:'),
+                Text(
+                  'Productos Vendidos:',
+                  style: subtitleTextStyle,
+                ),
                 // Usar un Column en lugar de un ListView.builder
                 Column(
                   children: sale.products.map((product) {
                     return ListTile(
                       title: Text(product.title),
-                      subtitle:
-                          Text('Cantidad: ${product.quantity.toString()}'),
+                      subtitle: Text('Cantidad: ${product.quantity.toString()}',
+                          style: commonminTextStyle),
                     );
                   }).toList(),
                 ),
@@ -117,17 +170,24 @@ class _SalesPageState extends State<SalesPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Eliminar Venta'),
-          content: Text('¿Estás seguro que deseas eliminar esta venta?'),
+          title: Text('Eliminar Venta', style: titleblackTextStyle),
+          content: Text(
+            '¿Estás seguro que deseas eliminar esta venta?',
+            style: commonTextStyle,
+          ),
           actions: [
             TextButton(
-              child: Text('Cancelar'),
+              child: Text('Cancelar',
+                  style: commonTextStyle
+                      .merge(TextStyle(color: Colors.pinkAccent))),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text('Eliminar'),
+              child: Text('Eliminar',
+                  style: commonTextStyle
+                      .merge(TextStyle(color: Colors.pinkAccent))),
               onPressed: () {
                 _deleteSale(sale);
                 Navigator.of(context).pop();

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:baulsorpresas/db/conexion.dart';
 import 'package:baulsorpresas/models/product.dart';
 import 'package:baulsorpresas/models/sale.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import 'list_page.dart';
 
@@ -17,6 +18,40 @@ class VentasPage extends StatefulWidget {
 class _VentasPageState extends State<VentasPage> {
   List<Product> _selectedProducts = [];
   List<Product> _tempSelectedProducts = [];
+
+  // Estilo para los Textos normales
+  TextStyle commonTextStyle = GoogleFonts.neucha(
+    fontSize: 16,
+    fontWeight: FontWeight.normal,
+    color: Colors.black,
+  );
+// Estilo para los Textos normales
+  TextStyle commonminTextStyle = GoogleFonts.neucha(
+    fontSize: 14,
+    fontWeight: FontWeight.normal,
+    color: Colors.black,
+  );
+
+// Estilo para los títulos blancos
+  TextStyle titleTextStyle = GoogleFonts.neucha(
+    fontSize: 24,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+  );
+
+// Estilo para los títulos
+  TextStyle subtitleblackTextStyle = GoogleFonts.neucha(
+    fontSize: 20,
+    fontWeight: FontWeight.normal,
+    color: Colors.black,
+  );
+
+// Estilo para los títulos
+  TextStyle subtitleTextStyle = GoogleFonts.neucha(
+    fontSize: 18,
+    fontWeight: FontWeight.normal,
+    color: Colors.white,
+  );
 
   // ignore: unused_field
   double _totalAmount = 0;
@@ -66,7 +101,6 @@ class _VentasPageState extends State<VentasPage> {
       setState(() {
         _selectedProducts.clear();
         _tempSelectedProducts.clear();
-
       });
     }
   }
@@ -97,9 +131,14 @@ class _VentasPageState extends State<VentasPage> {
                       50, // Ajusta el tamaño de la imagen según sea necesario
                   height: 50,
                 ),
-                title: Text(product.title),
+                title: Text(
+                  product.title,
+                  style: subtitleblackTextStyle,
+                ),
                 subtitle: Text(
-                    '${product.content} - Cantidad disponible: ${product.quantity}'),
+                  'Cantidad disponible: ${product.quantity}',
+                  style: commonminTextStyle,
+                ),
                 trailing: IconButton(
                   icon: Icon(Icons.add),
                   onPressed: () {
@@ -200,7 +239,11 @@ class _VentasPageState extends State<VentasPage> {
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('No hay más unidades disponibles de ${product.title}'),
+          backgroundColor: Colors.pinkAccent,
+          content: Text(
+            'No hay más unidades disponibles de ${product.title}',
+            style: commonminTextStyle.merge(TextStyle(color: Colors.white)),
+          ),
         ),
       );
     }
@@ -213,8 +256,14 @@ class _VentasPageState extends State<VentasPage> {
       itemBuilder: (context, index) {
         Product product = _selectedProducts[index];
         return ListTile(
-          title: Text(product.title),
-          subtitle: Text(product.content),
+          title: Text(
+            product.title,
+            style: commonTextStyle,
+          ),
+          subtitle: Text(
+            product.content,
+            style: commonminTextStyle,
+          ),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -238,7 +287,10 @@ class _VentasPageState extends State<VentasPage> {
                   });
                 },
               ),
-              Text('Cantidad: ${product.quantity}'),
+              Text(
+                'Cantidad: ${product.quantity}',
+                style: commonminTextStyle,
+              ),
             ],
           ),
         );
@@ -308,7 +360,11 @@ class _VentasPageState extends State<VentasPage> {
 
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        content: Text('Venta registrada correctamente'),
+        backgroundColor: Colors.pinkAccent,
+        content: Text(
+          'Venta registrada correctamente',
+          style: commonminTextStyle.merge(TextStyle(color: Colors.white)),
+        ),
       ),
     );
     Navigator.pushReplacementNamed(context, ListPage.ROUTE);
@@ -320,7 +376,10 @@ class _VentasPageState extends State<VentasPage> {
       appBar: AppBar(
         backgroundColor: Colors.pinkAccent,
         automaticallyImplyLeading: false,
-        title: Text('Ventas'),
+        title: Text(
+          'Ventas',
+          style: titleTextStyle,
+        ),
       ),
       body: Column(
         children: [
@@ -335,7 +394,7 @@ class _VentasPageState extends State<VentasPage> {
             onPressed: () {
               _registerSaleAndUpdateInventory();
             },
-            child: Text('Registrar Venta'),
+            child: Text('Registrar Venta', style: subtitleTextStyle),
             style: ButtonStyle(
               backgroundColor:
                   MaterialStateProperty.all<Color>(Colors.pinkAccent),
@@ -346,12 +405,15 @@ class _VentasPageState extends State<VentasPage> {
               _cancelSale();
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: Text('Venta cancelada'),
+                  backgroundColor: Colors.pinkAccent,
+                  content: Text('Venta cancelada',
+                      style: commonminTextStyle
+                          .merge(TextStyle(color: Colors.white))),
                 ),
               );
               Navigator.pushReplacementNamed(context, ListPage.ROUTE);
             },
-            child: Text('Cancelar Venta'),
+            child: Text('Cancelar Venta', style: subtitleTextStyle),
             style: ButtonStyle(
               backgroundColor:
                   MaterialStateProperty.all<Color>(Colors.pinkAccent),

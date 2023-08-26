@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:baulsorpresas/db/conexion.dart';
 import 'package:baulsorpresas/models/product.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 // ignore: must_be_immutable
@@ -54,6 +55,12 @@ class _FormSaveState extends State<FormSave> {
                   },
                   decoration: InputDecoration(
                     labelText: "Titulo",
+                    labelStyle: GoogleFonts.getFont(
+                      'Neucha',
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                      color: Colors.black,
+                    ),
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -70,6 +77,12 @@ class _FormSaveState extends State<FormSave> {
                   },
                   decoration: InputDecoration(
                     labelText: "Contenido",
+                    labelStyle: GoogleFonts.getFont(
+                      'Neucha',
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                      color: Colors.black,
+                    ),
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -85,11 +98,25 @@ class _FormSaveState extends State<FormSave> {
                   },
                   decoration: InputDecoration(
                     labelText: "Ruta de la Imagen",
+                    labelStyle: GoogleFonts.getFont(
+                      'Neucha',
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                      color: Colors.black,
+                    ),
                     border: OutlineInputBorder(),
                   ),
                 ),
                 ElevatedButton(
-                  child: Text("Seleccionar Imagen"),
+                  child: Text(
+                    "Seleccionar Imagen",
+                    style: GoogleFonts.getFont(
+                      'Neucha',
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                      color: Colors.white,
+                    ),
+                  ),
                   onPressed: _selectImage,
                   style: ButtonStyle(
                     backgroundColor:
@@ -109,6 +136,12 @@ class _FormSaveState extends State<FormSave> {
                   },
                   decoration: InputDecoration(
                     labelText: "Precio",
+                    labelStyle: GoogleFonts.getFont(
+                      'Neucha',
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                      color: Colors.black,
+                    ),
                     border: OutlineInputBorder(),
                   ),
                 ),
@@ -125,11 +158,25 @@ class _FormSaveState extends State<FormSave> {
                   },
                   decoration: InputDecoration(
                     labelText: "Cantidad",
+                    labelStyle: GoogleFonts.getFont(
+                      'Neucha',
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                      color: Colors.black,
+                    ),
                     border: OutlineInputBorder(),
                   ),
                 ),
                 ElevatedButton(
-                  child: Text("Guardar"),
+                  child: Text(
+                    "Guardar",
+                    style: GoogleFonts.getFont(
+                      'Neucha',
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal,
+                      color: Colors.white,
+                    ),
+                  ),
                   onPressed: () => _saveProduct(context),
                   style: ButtonStyle(
                     backgroundColor:

@@ -117,6 +117,8 @@ class ConexionDB {
     );
   }
 
+  
+
   // Funcion para Eliminar un Producto
 
   static Future<int> delete(int productId) async {
@@ -178,8 +180,6 @@ class ConexionDB {
       throw Exception('Failed to load products');
     }
   }
-
-  
 
   //----------------- Funciones para la Gestion de Usuario ------------------------
 
